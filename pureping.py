@@ -196,7 +196,10 @@ def do_one(dest_addr, timeout):
  
     my_ID = os.getpid() & 0xFFFF
  
-    send_one_ping(my_socket, dest_addr, my_ID)
+    try:
+        send_one_ping(my_socket, dest_addr, my_ID)
+    except:
+        print "Socket error"
     delay = receive_one_ping(my_socket, my_ID, timeout)
  
     my_socket.close()
